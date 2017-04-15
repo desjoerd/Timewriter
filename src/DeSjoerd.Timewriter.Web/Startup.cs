@@ -63,6 +63,8 @@ namespace DeSjoerd.Timewriter.Web
 
             if (env.IsDevelopment())
             {
+                loggerFactory.AddDebug();
+
                 app.UseDeveloperExceptionPage();
             }
 
