@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeSjoerd.Timewriter.Core.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeSjoerd.Timewriter.Core", "src\DeSjoerd.Timewriter.Core\DeSjoerd.Timewriter.Core.csproj", "{4629F26B-E3E8-4C10-9EB1-E62A7E2B52F8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{788E7AB0-81AA-4075-9C51-DA64B5073231}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.MD = README.MD
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
