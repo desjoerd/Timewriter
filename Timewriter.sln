@@ -3,8 +3,48 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DBA250CF-85CE-4A1A-AE40-0D870F012909}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{73A761E0-86D3-4E4A-885C-F88DD255F66E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeSjoerd.Timewriter.Web", "src\DeSjoerd.Timewriter.Web\DeSjoerd.Timewriter.Web.csproj", "{5F84004E-CD7A-41A9-94C1-743E1FEEA583}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeSjoerd.Timewriter.Web.Tests", "test\DeSjoerd.Timewriter.Web.Tests\DeSjoerd.Timewriter.Web.Tests.csproj", "{B2BF0DC0-1996-4758-B012-1F3D5D52E191}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeSjoerd.Timewriter.Core.Tests", "test\DeSjoerd.Timewriter.Core.Tests\DeSjoerd.Timewriter.Core.Tests.csproj", "{91523727-2B49-43FE-AE04-D633E54C2116}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeSjoerd.Timewriter.Core", "src\DeSjoerd.Timewriter.Core\DeSjoerd.Timewriter.Core.csproj", "{4629F26B-E3E8-4C10-9EB1-E62A7E2B52F8}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F84004E-CD7A-41A9-94C1-743E1FEEA583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F84004E-CD7A-41A9-94C1-743E1FEEA583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F84004E-CD7A-41A9-94C1-743E1FEEA583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F84004E-CD7A-41A9-94C1-743E1FEEA583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2BF0DC0-1996-4758-B012-1F3D5D52E191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2BF0DC0-1996-4758-B012-1F3D5D52E191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2BF0DC0-1996-4758-B012-1F3D5D52E191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2BF0DC0-1996-4758-B012-1F3D5D52E191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91523727-2B49-43FE-AE04-D633E54C2116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91523727-2B49-43FE-AE04-D633E54C2116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91523727-2B49-43FE-AE04-D633E54C2116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91523727-2B49-43FE-AE04-D633E54C2116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4629F26B-E3E8-4C10-9EB1-E62A7E2B52F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4629F26B-E3E8-4C10-9EB1-E62A7E2B52F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4629F26B-E3E8-4C10-9EB1-E62A7E2B52F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4629F26B-E3E8-4C10-9EB1-E62A7E2B52F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F84004E-CD7A-41A9-94C1-743E1FEEA583} = {DBA250CF-85CE-4A1A-AE40-0D870F012909}
+		{B2BF0DC0-1996-4758-B012-1F3D5D52E191} = {73A761E0-86D3-4E4A-885C-F88DD255F66E}
+		{91523727-2B49-43FE-AE04-D633E54C2116} = {73A761E0-86D3-4E4A-885C-F88DD255F66E}
+		{4629F26B-E3E8-4C10-9EB1-E62A7E2B52F8} = {DBA250CF-85CE-4A1A-AE40-0D870F012909}
 	EndGlobalSection
 EndGlobal
