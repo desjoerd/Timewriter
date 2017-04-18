@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import './App.css';
-import { authRedirect, authCallback } from './api/auth';
-import { secure } from './api/ping';
+import { authRedirect } from './api/auth';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
+      isAuthLoading: false,
       isAuthenticated: false,
     };
   }
@@ -15,45 +18,29 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    authCallback(window.location.href)
-      .then((user) => {
-        if(user.accessToken) {
-          this.setState({
-            isAuthenticated: true,
-          });
-
-          secure()
-            .then((response) => {
-              this.setState({
-                ...this.state,
-                date: response
-              });
-            });
-        }
-      });
+    console.log(this.props.location)
+    console.log(this.props.match)
   }
 
   render() {
-    const { date } = this.state;
-
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
+        <AppBar
+          title="Timewriter"
+          showMenuIconButton={false}
+        />
+        <div className="Content">
+          {this.renderSwitch()}
         </div>
-        {this.renderSwitch()}
-        <p className="App-intro">
-          {date}
-        </p>
       </div>
     );
   }
 
   renderSwitch = () => {
-    if(this.state.isAuthenticated) {
-      return (<button onClick={this.logout}>logout</button>);
+    if (this.state.isAuthenticated) {
+      return (<RaisedButton onClick={this.logout} label="logout"></RaisedButton>);
     } else {
-      return (<button onClick={this.authorize}>authorize</button>);
+      return (<RaisedButton onClick={this.authorize} label="Authorize" />);
     }
   }
 
