@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router'
 
 import './App.css';
-import LoginRedirect from './components/LoginRedirect';
-import { isAuthenticated } from './reducers';
 
 class App extends Component {
-  componentWillMount = () => {
-  }
-
-  componentDidMount = () => {
-    console.log('app mount', this.props);
-    console.log(this.props.location);
-    console.log(this.props.match);
-  }
 
   render() {
     
@@ -27,19 +15,10 @@ class App extends Component {
           showMenuIconButton={false}
         />
         <div className="Content">
-          {this.renderSwitch()}
+          <RaisedButton onClick={this.logout} label="logout"></RaisedButton>)
         </div>
       </div>
     );
-  }
-
-  renderSwitch = () => {
-    console.log(this.props);
-    if (this.props.isAuthenticated) {
-      return (<RaisedButton onClick={this.logout} label="logout"></RaisedButton>);
-    } else {
-      return (<LoginRedirect />);
-    }
   }
 
   logout = () => {
@@ -47,10 +26,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  ...props,
-  isAuthLoading: state.authentication.isLoading,
-  isAuthenticated: isAuthenticated(state),
-});
-
-export default withRouter(connect(mapStateToProps)(App));
+export default App;

@@ -6,6 +6,7 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import { Switch, Route } from 'react-router';
 
 import App from './App';
+import { requiresAuthentication } from './containers/RequiresAuthentication';
 import LoginHandler from './components/LoginHandler';
 
 
@@ -14,7 +15,7 @@ export default ({ Router }) => (
     <Router>
       <Switch>
         <Route path="/login" component={LoginHandler} />
-        <Route path="/" component={App} />
+        <Route path="/" component={requiresAuthentication(App)} />
       </Switch>
     </Router>
   </MuiThemeProvider>

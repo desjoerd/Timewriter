@@ -3,7 +3,6 @@ import { Redirect, withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import { authCallback } from '../config/auth';
 import { handleLogin } from '../actions/authentication';
-import LoginRedirect from './LoginRedirect';
 import { isAuthenticated } from '../reducers';
 
 class LoginHandler extends Component {
