@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 
 import './App.css';
-import { authRedirect } from './api/auth';
+import LoginRedirect from './components/LoginRedirect';
+import { isAuthenticated } from './reducers';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isAuthLoading: false,
-      isAuthenticated: false,
-    };
-  }
-
   componentWillMount = () => {
   }
 
   componentDidMount = () => {
-    console.log(this.props.location)
-    console.log(this.props.match)
+    console.log('app mount', this.props);
+    console.log(this.props.location);
+    console.log(this.props.match);
   }
 
   render() {
+    
     return (
       <div className="App">
         <AppBar
@@ -37,15 +34,12 @@ class App extends Component {
   }
 
   renderSwitch = () => {
-    if (this.state.isAuthenticated) {
+    console.log(this.props);
+    if (this.props.isAuthenticated) {
       return (<RaisedButton onClick={this.logout} label="logout"></RaisedButton>);
     } else {
-      return (<RaisedButton onClick={this.authorize} label="Authorize" />);
+      return (<LoginRedirect />);
     }
-  }
-
-  authorize = () => {
-    authRedirect();
   }
 
   logout = () => {
@@ -53,4 +47,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state, props) => ({
+  ...props,
+  isAuthLoading: state.authentication.isLoading,
+  isAuthenticated: isAuthenticated(state),
+});
+
+export default withRouter(connect(mapStateToProps)(App));

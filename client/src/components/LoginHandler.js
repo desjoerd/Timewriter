@@ -1,37 +1,38 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router'
-import { authCallback } from '../api/auth';
+import { Redirect, withRouter } from 'react-router'
+import { connect } from 'react-redux';
+import { authCallback } from '../config/auth';
+import { handleLogin } from '../actions/authentication';
+import LoginRedirect from './LoginRedirect';
+import { isAuthenticated } from '../reducers';
 
-export default class LoginHandler extends Component {
-
-  constructor() {
-    super();
-
-    this.state = {
-      loggingIn: true,
-      loggedIn: false,
-    };
-  }
+class LoginHandler extends Component {
 
   componentDidMount = () => {
-    const { location } = this.props;
+    const { location, dispatch } = this.props;
+    console.log("authCallback");
     authCallback(location.hash)
       .then((user) => {
-        this.setState((prevState) => ({
-          loggingIn: false,
-          loggedIn: user !== undefined,
-        }));
+        console.log(user);
+        dispatch(handleLogin(user));
       });
   }
 
   render = () => {
-    const { loggingIn, loggedIn } = this.state;
-    if(loggedIn) {
-      return (<Redirect to="/" />);
-    } else if(!loggingIn) {
-      return (<p>Error logging in</p>)
-    } else {
-      return null;
+    const { isLoading, isAuthenticated } = this.props;
+    if(!isLoading && !isAuthenticated) {
+    } else if (isLoading) {
+      return (<p>Loading...</p>);
+    } else if (isAuthenticated) {
+      return (<Redirect to={{ pathname: '/' }} />);
     }
   }
 }
+
+const mapStateToProps = (state, props) => ({
+  ...props,
+  isLoading: state.authentication.isLoading,
+  isAuthenticated: isAuthenticated(state),
+});
+
+export default withRouter(connect(mapStateToProps)(LoginHandler));

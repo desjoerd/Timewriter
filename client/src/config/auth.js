@@ -9,25 +9,12 @@ const client = new ClientOAuth2({
   }
 });
 
-const authState = {
-  client,
-  user: undefined
-};
-
-export default authState;
+export default client;
 
 export const authRedirect = () =>  {
   window.location.assign(client.token.getUri());
 }
 
 export const authCallback = (uri) => {
-  return client.token.getToken(uri || window.location.href)
-    .then((user) => {
-      authState.user = user;
-      return user;
-    });
-}
-
-export const getUser = () => {
-  return Promise.resolve(authState.user);
+  return client.token.getToken(uri || window.location.href);
 }
