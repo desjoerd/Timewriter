@@ -3,7 +3,7 @@ import { Redirect, withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import { authCallback } from '../config/auth';
 import { handleLogin } from '../actions/authentication';
-import { isAuthenticated } from '../reducers';
+import { isAuthenticated, isSessionLoading } from '../reducers';
 
 class LoginHandler extends Component {
 
@@ -30,7 +30,7 @@ class LoginHandler extends Component {
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  isLoading: state.authentication.isLoading,
+  isLoading: isSessionLoading(state),
   isAuthenticated: isAuthenticated(state),
 });
 

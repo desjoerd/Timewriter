@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
 
-import authentication, * as fromAuthentication from './authentication';
+import session, * as fromSession from './session';
 
 export default combineReducers({
-  authentication,
+  session,
 });
 
 export const isAuthenticated = (state) => 
-  fromAuthentication.isAuthenticated(state.authentication);
+  fromSession.isAuthenticated(state.session);
+
+export const isSessionLoading = (state) =>
+  fromSession.isSessionLoading(state.session);

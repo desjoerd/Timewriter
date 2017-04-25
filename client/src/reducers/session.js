@@ -19,11 +19,12 @@ const isLoading = (state = true, action) => {
   }
 }
 
-const authentication = combineReducers({
+const session = combineReducers({
   accessToken,
   isLoading,
 });
 
-export default authentication;
+export default session;
 
 export const isAuthenticated = (state) => !!state.accessToken;
+export const isSessionLoading = (state) => state.isLoading;
