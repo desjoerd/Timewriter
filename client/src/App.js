@@ -1,29 +1,23 @@
-import React, { Component } from 'react';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+
+import { Switch, Route } from 'react-router';
+
+import Shell from './components/Shell';
+import { requiresAuthentication } from './components/RequiresAuthentication';
+import LoginHandler from './components/LoginHandler';
 
 import './App.css';
 
-class App extends Component {
-
-  render() {
-    
-    return (
-      <div className="App">
-        <AppBar
-          title="Timewriter"
-          showMenuIconButton={false}
-        />
-        <div className="Content">
-          <RaisedButton onClick={this.logout} label="logout"></RaisedButton>)
-        </div>
-      </div>
-    );
-  }
-
-  logout = () => {
-    window.location.assign('https://login.windows.net/common/oauth2/logout?post_logout_r‌​edirect_uri=http://localhost:3000');
-  }
-}
-
-export default App;
+export default ({ Router }) => (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Router>
+      <Switch>
+        <Route path="/login" component={LoginHandler} />
+        <Route path="/" component={requiresAuthentication(Shell)} />
+      </Switch>
+    </Router>
+  </MuiThemeProvider>
+);

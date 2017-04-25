@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux'
+import * as actions from '../actions/session';
 
 const accessToken = (state = null, action) => {
   console.log(action, state);
   switch (action.type) {
-    case 'HANDLE_LOGIN':
+    case actions.HANDLE_LOGIN:
       return action.user.accessToken;
+    case actions.SESSION_LOADED:
+      return action.session.accessToken;
     default:
       return state;
   }
@@ -12,8 +15,9 @@ const accessToken = (state = null, action) => {
 
 const isLoading = (state = true, action) => {
   switch (action.type) {
-    case 'HANDLE_LOGIN':
-      return !action.user.accessToken;
+    case actions.SESSION_LOADED:
+    case actions.HANDLE_LOGIN:
+      return false;
     default:
       return state;
   }

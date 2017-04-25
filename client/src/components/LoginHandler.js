@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import { authCallback } from '../config/auth';
-import { handleLogin } from '../actions/authentication';
+import { handleLogin } from '../actions/session';
 import { isAuthenticated, isSessionLoading } from '../reducers';
 
 class LoginHandler extends Component {
@@ -12,7 +12,9 @@ class LoginHandler extends Component {
     console.log("authCallback");
     authCallback(location.hash)
       .then((user) => {
-        console.log(user);
+        if(user) {
+          window.sessionStorage.setItem('accessToken', user.accessToken);
+        }
         dispatch(handleLogin(user));
       });
   }
